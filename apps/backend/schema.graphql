@@ -1,8 +1,14 @@
 # Scalar types for BigInt
 scalar BigInt
 
+# Nested Composit
+type TokenStorageID {
+  press: String!
+  tokenId: BigInt!
+}
 # TokenStorage type
-type TokenStorage {
+type TokenStorage @entity {
+  id: TokenStorageID!
   press: String!
   pointer: String!
   tokenId: BigInt!
@@ -13,8 +19,8 @@ type TokenStorage {
 }
 
 # RawTransaction type
-type RawTransaction {
-  transactionHash: String!
+type RawTransaction @entity {
+  transactionHash: ID!
   eventType: String!
   createdAt: BigInt!
   Press: [Router!]!
@@ -22,15 +28,15 @@ type RawTransaction {
 }
 
 # Arweave type
-type Arweave {
+type Arweave @entity {
+  link: ID!
   tableName: String!
-  link: String!
   timestamp: DateTime!
 }
 
 # Router type
-type Router {
-  press: String!
+type Router @entity {
+  press: ID!
   sender: String!
   factory: String!
   pointer: String
@@ -47,7 +53,7 @@ type Router {
 }
 
 # Queries
-type Query {
+type Query @entity {
   getTokenStorage(press: String!, tokenId: BigInt!): TokenStorage
   getRawTransaction(transactionHash: String!): RawTransaction
   getArweave(link: String!): Arweave
@@ -55,7 +61,7 @@ type Query {
 }
 
 # CRUD
-type Mutation {
+type Mutation @entity {
   createTokenStorage(input: TokenStorageInput!): TokenStorage!
   updateTokenStorage(press: String!, tokenId: BigInt!, input: TokenStorageInput!): TokenStorage!
   deleteTokenStorage(press: String!, tokenId: BigInt!): Boolean!
