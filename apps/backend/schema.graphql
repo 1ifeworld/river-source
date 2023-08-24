@@ -1,4 +1,111 @@
-type ExampleEntity @entity {
-  id: String!
-  name: String!
+# Scalar types for BigInt
+scalar BigInt
+
+# TokenStorage type
+type TokenStorage {
+  press: String!
+  pointer: String!
+  tokenId: BigInt!
+  transactionHash: String!
+  updatedAt: BigInt!
+  updatedBy: String!
+  rawTransaction: RawTransaction!
+}
+
+# RawTransaction type
+type RawTransaction {
+  transactionHash: String!
+  eventType: String!
+  createdAt: BigInt!
+  Press: [Router!]!
+  tokenStorage: [TokenStorage!]!
+}
+
+# Arweave type
+type Arweave {
+  tableName: String!
+  link: String!
+  timestamp: DateTime!
+}
+
+# Router type
+type Router {
+  press: String!
+  sender: String!
+  factory: String!
+  pointer: String
+  owner: String!
+  logic: String!
+  renderer: String!
+  fundsRecipient: String!
+  royaltyBPS: BigInt!
+  transferable: Boolean!
+  fungible: Boolean!
+  createdAt: BigInt!
+  transactionHash: String!
+  RawTransaction: RawTransaction!
+}
+
+# Queries
+type Query {
+  getTokenStorage(press: String!, tokenId: BigInt!): TokenStorage
+  getRawTransaction(transactionHash: String!): RawTransaction
+  getArweave(link: String!): Arweave
+  getRouter(press: String!): Router
+}
+
+# CRUD
+type Mutation {
+  createTokenStorage(input: TokenStorageInput!): TokenStorage!
+  updateTokenStorage(press: String!, tokenId: BigInt!, input: TokenStorageInput!): TokenStorage!
+  deleteTokenStorage(press: String!, tokenId: BigInt!): Boolean!
+
+  createRawTransaction(input: RawTransactionInput!): RawTransaction!
+  updateRawTransaction(transactionHash: String!, input: RawTransactionInput!): RawTransaction!
+  deleteRawTransaction(transactionHash: String!): Boolean!
+
+  createArweave(input: ArweaveInput!): Arweave!
+  updateArweave(link: String!, input: ArweaveInput!): Arweave!
+  deleteArweave(link: String!): Boolean!
+
+  createRouter(input: RouterInput!): Router!
+  updateRouter(press: String!, input: RouterInput!): Router!
+  deleteRouter(press: String!): Boolean!
+}
+
+# Input types for mutations
+input TokenStorageInput {
+  press: String!
+  pointer: String!
+  tokenId: BigInt!
+  transactionHash: String!
+  updatedAt: BigInt!
+  updatedBy: String!
+}
+
+input RawTransactionInput {
+  transactionHash: String!
+  eventType: String!
+  createdAt: BigInt!
+}
+
+input ArweaveInput {
+  tableName: String!
+  link: String!
+}
+
+input RouterInput {
+  press: String!
+  sender: String!
+  factory: String!
+  pointer: String
+  owner: String!
+  logic: String!
+  renderer: String!
+  fundsRecipient: String!
+  royaltyBPS: BigInt!
+  transferable: Boolean!
+  fungible: Boolean!
+  createdAt: BigInt!
+  transactionHash: String!
 }
