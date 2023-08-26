@@ -4,7 +4,7 @@ ponder.on("Router:DataOverwritten", async ({event, context})=> {
 const {TokenStorage } = context.entities;
 
 const dataOverWritten = await TokenStorage.upsert({
-  id: `${event.params.press}-${event.params.ids}`,
+  id: `${event.params.press}-${event.params.ids}`, // need to think about this more 
   create: {
     sender: event.params.sender,
     press: event.params.press,
@@ -74,17 +74,20 @@ ponder.on("Router:PressRegistered", async ({event, context})=> {
   })
   });
 
-
-ponder.on("Router:PressDataUpdated", async ({event, context}) => {
-const { TokenStorage } = context.entities;
-
-const pressDataUpdated = await TokenStorage.create({
-  id: `${event.params.press}-${event.params.pointer}`,
-  data:{
-    sender: event.params.sender,
-    press: event.params.press,
-    pointer: event.params.pointer,
-  },
-})
-});
-
+  ponder.on("Router:PressDataUpdated", async ({event, context}) => {
+    const { TokenStorage } = context.entities;
+    
+    const pressDataUpdated = await TokenStorage.upsert({
+      id: `${event.params.press}-${event.params.pointer}`,
+      create:{
+        sender: event.params.sender,
+        press: event.params.press,
+        pointer: event.params.pointer,
+      },
+      update:{
+        sender: event.params.sender,
+        press: event.params.press,
+        pointer: event.params.pointer,
+      }
+    })
+    });
