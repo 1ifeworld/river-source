@@ -22,7 +22,7 @@ const dataOverWritten = await TokenStorage.upsert({
 ponder.on("Router:DataRemoved", async ({event, context})=> {
   const {TokenStorage } = context.entities;
   
-  const dataOverWritten = await TokenStorage.update({
+  const dataRemoved = await TokenStorage.update({
     id: `${event.params.press}-${event.params.ids}`,
     data: {
      sender: event.params.sender,
@@ -35,7 +35,7 @@ ponder.on("Router:DataRemoved", async ({event, context})=> {
 ponder.on("Router:DataSent", async ({event, context})=> {
   const {TokenStorage } = context.entities;
   
-  const dataOverWritten = await TokenStorage.create({
+  const dataSent = await TokenStorage.create({
     id: `${event.params.press}-${event.params.ids}`,
     data: {
       sender: event.params.sender,
@@ -50,7 +50,7 @@ ponder.on("Router:DataSent", async ({event, context})=> {
 ponder.on("Router:OwnershipTransferred", async ({event, context})=> {
   const {TokenStorage } = context.entities;
   
-  const dataOverWritten = await TokenStorage.update({
+  const ownershipTransferred = await TokenStorage.update({
     id: `${event.params.previousOwner}-${event.params.newOwner}`,
     data: {
       previousOwner: [...event.params.previousOwner],
@@ -63,7 +63,7 @@ ponder.on("Router:OwnershipTransferred", async ({event, context})=> {
 ponder.on("Router:PressRegistered", async ({event, context})=> {
   const {Router } = context.entities;
   
-  const dataOverWritten = await Router.create({
+  const pressRegistered = await Router.create({
     id: `${event.params.sender}-${event.params.factory}`,
     data: {
       sender: event.params.sender,
