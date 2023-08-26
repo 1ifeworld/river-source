@@ -1,7 +1,106 @@
 [
-  { "inputs": [], "name": "Input_Length_Mistmatch", "type": "error" },
-  { "inputs": [], "name": "Invalid_Factory", "type": "error" },
-  { "inputs": [], "name": "Invalid_Press", "type": "error" },
+  { "inputs": [], "name": "Factory_Not_Registered", "type": "error" },
+  { "inputs": [], "name": "Input_Length_Mismatch", "type": "error" },
+  { "inputs": [], "name": "Press_Not_Registered", "type": "error" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "press",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "ids",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "response",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "schema",
+        "type": "uint256"
+      }
+    ],
+    "name": "DataOverwritten",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "press",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "ids",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "DataRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "press",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "ids",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "response",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "schema",
+        "type": "uint256"
+      }
+    ],
+    "name": "DataSent",
+    "type": "event"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -91,96 +190,15 @@
         "internalType": "address",
         "name": "newPress",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newPressData",
+        "type": "address"
       }
     ],
     "name": "PressRegistered",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "press",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "tokenIds",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "pointers",
-        "type": "address[]"
-      }
-    ],
-    "name": "TokenDataOverwritten",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "press",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "tokenIds",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "TokenDataRemoved",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "press",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "tokenIds",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "pointers",
-        "type": "address[]"
-      }
-    ],
-    "name": "TokenDataStored",
     "type": "event"
   },
   {
@@ -195,17 +213,7 @@
       { "internalType": "address", "name": "press", "type": "address" },
       { "internalType": "bytes", "name": "data", "type": "bytes" }
     ],
-    "name": "overwriteTokenData",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address[]", "name": "presses", "type": "address[]" },
-      { "internalType": "bytes[]", "name": "datas", "type": "bytes[]" }
-    ],
-    "name": "overwriteTokenDataMulti",
+    "name": "overwriteData",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -239,17 +247,7 @@
       { "internalType": "address", "name": "press", "type": "address" },
       { "internalType": "bytes", "name": "data", "type": "bytes" }
     ],
-    "name": "removeTokenData",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address[]", "name": "presses", "type": "address[]" },
-      { "internalType": "bytes[]", "name": "datas", "type": "bytes[]" }
-    ],
-    "name": "removeTokenDataMulti",
+    "name": "removeData",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -263,11 +261,24 @@
   },
   {
     "inputs": [
+      { "internalType": "address", "name": "press", "type": "address" },
+      { "internalType": "bytes", "name": "data", "type": "bytes" }
+    ],
+    "name": "sendData",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
       { "internalType": "address", "name": "factoryImpl", "type": "address" },
       { "internalType": "bytes", "name": "factoryInit", "type": "bytes" }
     ],
-    "name": "setup",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "setupPress",
+    "outputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "address", "name": "", "type": "address" }
+    ],
     "stateMutability": "payable",
     "type": "function"
   },
@@ -280,30 +291,11 @@
       },
       { "internalType": "bytes[]", "name": "factoryInits", "type": "bytes[]" }
     ],
-    "name": "setupBatch",
+    "name": "setupPressBatch",
     "outputs": [
+      { "internalType": "address[]", "name": "", "type": "address[]" },
       { "internalType": "address[]", "name": "", "type": "address[]" }
     ],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "press", "type": "address" },
-      { "internalType": "bytes", "name": "data", "type": "bytes" }
-    ],
-    "name": "storeTokenData",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address[]", "name": "presses", "type": "address[]" },
-      { "internalType": "bytes[]", "name": "datas", "type": "bytes[]" }
-    ],
-    "name": "storeTokenDataMulti",
-    "outputs": [],
     "stateMutability": "payable",
     "type": "function"
   },
@@ -322,16 +314,6 @@
       { "internalType": "bytes", "name": "data", "type": "bytes" }
     ],
     "name": "updatePressData",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address[]", "name": "presses", "type": "address[]" },
-      { "internalType": "bytes[]", "name": "datas", "type": "bytes[]" }
-    ],
-    "name": "updatePressDataMulti",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

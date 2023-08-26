@@ -1,15 +1,22 @@
 
 # TokenStorage type
+
 type TokenStorage @entity {
   id: String!
   press: String
   pointer: String
   sender: String
   tokenId: BigInt
+  ids: [BigInt]
+  response: String
+  schema: BigInt
+  previousOwner: [String]
+  newOwner: String
   transactionHash: String
   updatedAt: BigInt
   updatedBy: String
   rawTransaction: RawTransaction
+
 }
 
 # RawTransaction type
@@ -19,7 +26,7 @@ type RawTransaction @entity {
   eventType: String
   createdAt: BigInt
   Press: [Router] @derivedFrom(field: "RawTransaction")
-  tokenStorage: [TokenStorage] @derivedFrom(field: "RawTransactin")
+  tokenStorage: [TokenStorage] @derivedFrom(field: "RawTransaction")
 }
 
 # Arweave type
@@ -36,6 +43,8 @@ type Router @entity {
   sender: String
   factory: String
   pointer: String
+  newPress: String
+  newPressData: String
   owner: String
   logic: String
   renderer: String
