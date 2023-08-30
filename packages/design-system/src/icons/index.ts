@@ -1,1 +1,3 @@
-export { RiverIcon, type SvgProps } from './RiverIcon'
+export { Menu } from './Menu';
+export { RiverIcon } from './RiverIcon';
+export { type SvgProps } from './types';
