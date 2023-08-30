@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import { helveticaNeue } from './fonts/fonts';
-import { Sidebar } from '../components/client';
+import { Sidebar, Header } from '../components/client';
 
 export const metadata: Metadata = {
   title: 'River',

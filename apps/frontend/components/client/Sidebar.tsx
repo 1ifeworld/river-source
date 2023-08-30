@@ -6,6 +6,7 @@ import {
   SheetTitle,
   SheetFooter,
   SheetClose,
+  SheetOverlay,
   SheetTrigger,
   Menu,
   Flex,
@@ -17,24 +18,30 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 export function Sidebar() {
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger className='p-5'>
         <Menu />
       </SheetTrigger>
-      <SheetContent className='px-5 w-[208px]' side={'left'}>
-        <div className='grid gap-4 py-4'>
-          <Flex className='items-center gap-x-2'>
-            {/* TODO: replace with custom `SearchIcon` */}
-            <MagnifyingGlassIcon fill={'#484848'} />
-            <BodySmall>Search</BodySmall>
-          </Flex>
-          <Flex className='items-center gap-x-2'>
-            <Globe />
-            <BodySmall>Home</BodySmall>
+      <SheetContent
+        className='px-5 w-[208px] shadow-none bg-white'
+        side={'left'}
+      >
+        <Flex className='flex-col gap-[40px] mt-12'>
+          <Flex className='flex-col gap-4'>
+            <Flex className='items-center gap-x-2'>
+              {/* TODO: replace with custom `SearchIcon` */}
+              <MagnifyingGlassIcon fill={'#484848'} />
+              <BodySmall>Search</BodySmall>
+            </Flex>
+            <Flex className='items-center gap-x-2'>
+              <Globe />
+              <BodySmall>Home</BodySmall>
+            </Flex>
           </Flex>
           <BodySmall className='text-sonic-silver font-medium'>
             My Channels
           </BodySmall>
-        </div>
+        </Flex>
+        <SheetClose className='focus:outline-none' />
         <SheetFooter>{/* Auth Placeholder */}</SheetFooter>
       </SheetContent>
     </Sheet>
