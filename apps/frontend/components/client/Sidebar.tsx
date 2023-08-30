@@ -4,21 +4,40 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
+  SheetFooter,
+  SheetClose,
   SheetTrigger,
+  Menu,
+  Flex,
+  BodySmall,
 } from '@river/design-system';
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 export function Sidebar() {
   return (
     <Sheet>
-      <SheetTrigger>Open</SheetTrigger>
-      <SheetContent side={'left'}>
-        <SheetHeader>
-          <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
-        </SheetHeader>
+      <SheetTrigger>
+        <Menu />
+      </SheetTrigger>
+      <SheetContent className='px-5 w-[208px]' side={'left'}>
+        <div className='grid gap-4 py-4'>
+          <Flex className='items-center gap-x-2'>
+            {/* TODO: replace with custom `SearchIcon` */}
+            <MagnifyingGlassIcon fill={'#484848'}/>
+            <BodySmall>Search</BodySmall>
+          </Flex>
+          <Flex className='items-center gap-x-2'>
+            {/* Icon Placeholder */}
+            <BodySmall>Home</BodySmall>
+          </Flex>
+          <BodySmall className='text-sonic-silver font-medium'>
+            My Channels
+          </BodySmall>
+        </div>
+        <SheetFooter>{/* Auth Placeholder */}</SheetFooter>
+        <SheetClose asChild>
+          {/* <Button type="submit">Save changes</Button> */}
+        </SheetClose>
       </SheetContent>
     </Sheet>
   );
