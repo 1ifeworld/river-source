@@ -11,11 +11,6 @@ export default async function Home() {
   //   return ipfsString.replace('ipfs://', 'https://ipfs.io/ipfs/');
   // };
 
-  // TODO JDR: make it work with uri use in QUERY 
-  const channelsWithNoName = channels.filter(
-    (channel) =>
-      channel?.contractUri?.image && channel.contractUri.image.trim() !== ''
-  );
 
   // const channelsContractUriInput: ContractUri[] = channelsWithNoName.map((channel) => ({
   //   id: channel?.id,
