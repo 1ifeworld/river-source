@@ -79,7 +79,7 @@ export function SearchContainer() {
 
   return (
     <Stack className='justify-center gap-4'>
-      <SearchGallery nftMetadata={searchResults} />
+      {searchResults && <SearchGallery nftMetadata={searchResults} />}
       <Stack className='gap-y-4 mx-[18px]'>
         <SearchInput
           searchResults={searchResults}
@@ -88,7 +88,7 @@ export function SearchContainer() {
         />
         <SearchAction
           nameOfAdd={searchResults?.title}
-          addReady={!!sendDataConfig ? true : false}
+          addReady={!!searchResults}
           addTrigger={sendData}
         />
       </Stack>
