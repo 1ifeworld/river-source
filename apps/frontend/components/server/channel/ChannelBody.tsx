@@ -3,9 +3,6 @@ import { Listing } from '../../../gql/sdk.generated'
 import { ListingCard } from '../../client'
 
 export function ChannelBody({ listings }: { listings: Listing[] }) {
-  if (!listings || listings.length === 0) {
-    return <div>No Listings available.</div>
-  }
 
   return (
     <Flex className="gap-x-10">
