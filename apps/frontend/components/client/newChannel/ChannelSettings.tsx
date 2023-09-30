@@ -32,6 +32,9 @@ export function ChannelSettings({
 }: ChannelSettingsProps) {
   const { address } = useAccount()
   const { display } = useGetAddressDisplay(address || zeroAddress)
+  const [addresses, setAddresses] = useState<string[]>([]);
+  const [displayAddresses, setDisplayAddresses] = useState<string[]>([]);
+
   const [localMerkleRoot, setLocalMerkleRoot] = useState<Hex | undefined>()
 
   const handleNameChange = useCallback(
@@ -74,6 +77,10 @@ export function ChannelSettings({
                 <LanyardMerkle
                   onMerkleRootChange={setMerkleRoot}
                   currentMerkleRoot={localMerkleRoot}
+                  addresses={addresses}
+                  setAddresses={setAddresses}
+                  displayAddresses={displayAddresses}
+                  setDisplayAddresses={setDisplayAddresses}
                 />
               </PopoverContent>
             </Flex>
